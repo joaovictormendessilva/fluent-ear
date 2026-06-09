@@ -1,26 +1,60 @@
 @import "tailwindcss";
 
+@theme {
+  /* Base */
+  --color-background: #030712;
+  --color-foreground: #ffffff;
+
+  /* Surfaces */
+  --color-surface: #111827cc;
+  --color-surface-2: #1f2937;
+  --color-surface-3: #374151;
+
+  /* Brand */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #60a5fa;
+  --color-primary-foreground: #ffffff;
+
+  /* Accent */
+  --color-accent: #06b6d4;
+  --color-accent-foreground: #ffffff;
+
+  /* Text */
+  --color-muted: #1e293b;
+  --color-muted-foreground: #94a3b8;
+
+  /* States */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-destructive: #ef4444;
+
+  /* UI */
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-ring: #3b82f6;
+
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.35);
+
+  --shadow-primary: 0 0 32px rgba(59, 130, 246, 0.25);
+
+  --shadow-accent: 0 0 32px rgba(6, 182, 212, 0.25);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --gradient-brand: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
+
+  --gradient-background: radial-gradient(circle at top center, rgba(59, 130, 246, 0.12), transparent 40%), #030712;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  min-height: 100vh;
 }
