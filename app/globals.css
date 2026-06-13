@@ -58,3 +58,19 @@ body {
   color: var(--color-foreground);
   min-height: 100vh;
 }
+
+@layer components {
+  .form-control {
+    @apply appearance-none bg-(--color-background) w-full h-14 px-5 rounded-md font-bold text-sm;
+  }
+
+  .btn-brand {
+    @apply rounded-md h-16 font-bold cursor-pointer;
+  }
+}
+
+@layer gradient {
+  .background-gradient {
+    background: var(--gradient-brand);
+  }
+}
