@@ -1,19 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { levels } from "./ProficiencyLevelContainer.utils";
+import { useFormContext, useWatch } from "react-hook-form";
+import { IGenerateExerciseSchema } from "../gerenate-exercise-form/GenerateExerciseForm.types";
 
 export function ProficiencyLevelContainer() {
-  const [selectedLevel, setSelectedLevel] = useState("a1");
+  const { setValue } = useFormContext<IGenerateExerciseSchema>();
 
-  const levels = ["a1", "a2", "b1", "b2", "c1"];
+  const proficiencyLevelValue = useWatch<IGenerateExerciseSchema>({ name: "proficiencyLevel" });
 
   return (
     <div className="bg-background flex gap-1 rounded-sm">
       {levels.map((level) => (
         <button
           key={level}
-          className={`uppercase w-full h-[44px] rounded-sm cursor-pointer text-[14px] font-bold ${selectedLevel !== level && "text-muted-foreground"} ${selectedLevel === level && "bg-primary"}`}
-          onClick={() => setSelectedLevel(level)}
+          className={`uppercase w-full h-[44px] rounded-sm cursor-pointer text-[14px] font-bold ${proficiencyLevelValue !== level && "text-muted-foreground"} ${proficiencyLevelValue === level && "bg-primary"}`}
+          onClick={() => setValue("proficiencyLevel", level)}
         >
           {level}
         </button>
