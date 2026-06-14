@@ -14,6 +14,8 @@ import { levels } from "../proficiency-level/ProficiencyLevelContainer.utils";
 import { topics } from "../topic-selector/TopicContainer.utils";
 import { generateExerciseSchema } from "./GenerateExerciseForm.schemas";
 import { IGenerateExerciseSchema } from "./GenerateExerciseForm.types";
+import { GenerateExerciseRequest } from "@/app/shared/types/exercise";
+import { exerciseService } from "@/app/services/exercise/exercise.service";
 
 export function GenerateExerciseForm() {
   const methods = useForm<IGenerateExerciseSchema>({
@@ -25,8 +27,20 @@ export function GenerateExerciseForm() {
     },
   });
 
-  const handleSubmit = methods.handleSubmit((data) => {
-    console.log(data);
+  const createPayload = (data: IGenerateExerciseSchema): GenerateExerciseRequest => {
+    return {
+      level: data.proficiencyLevel,
+      topic: data.topic,
+      contentLength: data.length,
+    };
+  };
+
+  const handleSubmit = methods.handleSubmit(async (data) => {
+    const payload: GenerateExerciseRequest = createPayload(data);
+
+    const response = (await exerciseService()).generateExercise(payload);
+
+    console.log(response);
   });
 
   return (
