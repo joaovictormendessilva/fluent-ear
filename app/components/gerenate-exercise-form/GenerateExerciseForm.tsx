@@ -20,10 +20,7 @@ export function GenerateExerciseForm() {
     resolver: yupResolver(generateExerciseSchema),
     defaultValues: {
       proficiencyLevel: levels[0],
-      topic: {
-        label: topics[0].label,
-        value: topics[0].value,
-      },
+      topic: topics[0].value,
       length: lengths[0],
     },
   });

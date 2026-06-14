@@ -1,14 +1,14 @@
+import { captalizeFirstLetter } from "@/app/shared/helpers/captalize-first-letter";
 import { useWatch } from "react-hook-form";
 import { IGenerateExerciseSchema } from "../gerenate-exercise-form/GenerateExerciseForm.types";
-import { RHFSelectInputOptionsProps } from "@/app/shared/components/rhf-select-input/RHFSelectInput.types";
-import { captalizeFirstLetter } from "@/app/shared/helpers/captalize-first-letter";
 
 export function ExercisePreview() {
   const proficiencyLevelValue = useWatch<IGenerateExerciseSchema>({ name: "proficiencyLevel" }).toString();
-  const selectedTopic = useWatch<IGenerateExerciseSchema>({ name: "topic" }) as RHFSelectInputOptionsProps;
+  const topicValue = useWatch<IGenerateExerciseSchema>({ name: "topic" }).toString();
   const lengthValue = useWatch<IGenerateExerciseSchema>({ name: "length" }).toString();
 
   const captalizedLengthValue = captalizeFirstLetter(lengthValue);
+  const captalizedtopicValue = captalizeFirstLetter(topicValue);
 
   return (
     <div className="border-2 border-surface-2 p-[25px] rounded-md bg-background flex flex-col gap-[18px]">
@@ -21,7 +21,7 @@ export function ExercisePreview() {
         </div>
         <div className="flex flex-col">
           <span className="text-[10px] text-muted-foreground">TOPIC</span>
-          <span className="text-[11px] md:text-[14px] font-bold">{selectedTopic.label}</span>
+          <span className="text-[11px] md:text-[14px] font-bold">{captalizedtopicValue}</span>
         </div>
         <div className="flex flex-col">
           <span className="text-[10px] text-muted-foreground">LENGTH</span>
