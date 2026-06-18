@@ -4,8 +4,10 @@ import { ContentLengthContainer } from "@/app/components/content-length";
 import { ExercisePreview } from "@/app/components/exercise-preview";
 import { ProficiencyLevelContainer } from "@/app/components/proficiency-level";
 import { TopicContainer } from "@/app/components/topic-selector";
+import { exerciseService } from "@/app/services/exercise/exercise.service";
 import { FormControl } from "@/app/shared/components/form-control";
 import { FormSectionTitle } from "@/app/shared/components/form-section-title";
+import { GenerateExerciseRequest } from "@/app/shared/types/exercise";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Globe, PanelsTopLeft, Timer, WandSparklesIcon } from "lucide-react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -14,8 +16,6 @@ import { levels } from "../proficiency-level/ProficiencyLevelContainer.utils";
 import { topics } from "../topic-selector/TopicContainer.utils";
 import { generateExerciseSchema } from "./GenerateExerciseForm.schemas";
 import { IGenerateExerciseSchema } from "./GenerateExerciseForm.types";
-import { GenerateExerciseRequest } from "@/app/shared/types/exercise";
-import { exerciseService } from "@/app/services/exercise/exercise.service";
 
 export function GenerateExerciseForm() {
   const methods = useForm<IGenerateExerciseSchema>({
@@ -38,9 +38,7 @@ export function GenerateExerciseForm() {
   const handleSubmit = methods.handleSubmit(async (data) => {
     const payload: GenerateExerciseRequest = createPayload(data);
 
-    const response = (await exerciseService()).generateExercise(payload);
-
-    console.log(response);
+    await exerciseService().generateExercise(payload);
   });
 
   return (
